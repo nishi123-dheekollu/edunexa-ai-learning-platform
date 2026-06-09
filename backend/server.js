@@ -9,7 +9,7 @@ const bcrypt = require("bcrypt");
 
 const User = require("./models/User");// Import User model
 
-const app = express();// Create express app
+const app = express();// Create express application
 
 app.use(cors());// Allow requests from frontend applications
 app.use(express.json()); // Parse incoming JSON data
@@ -22,7 +22,7 @@ mongoose.connect(MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
   .catch((err) => console.log("MongoDB Error ❌", err.message));
 
-// Test route to check if backend is running
+// Health check route
 app.get("/", (req, res) => {
   res.send("Backend is Running 🚀");
 });
@@ -30,17 +30,19 @@ app.get("/", (req, res) => {
 // Signup route
 app.post("/signup", async(req, res) => {
 
+    // Hash the user's password before storing it in the database
   const hashedPassword = await bcrypt.hash(
     req.body.password,
     10
   );
 
+    // Check whether the email is already registered
   const existingUser = await User.findOne({ email: req.body.email });
 if (existingUser) {
   return res.status(400).send("Email already exists");
 }
 
-
+  // Create a new user document
   const newUser = new User({
     name: req.body.name,
     email: req.body.email,
@@ -60,12 +62,13 @@ app.post("/login", async (req, res) => {
   const { email, password } = req.body;
 
   try {
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email });  // Find user by email
 
    if (!user) {
       return res.status(400).send("Invalid email or password");
     }
 
+    // Compare entered password with hashed password
     const isMatch = await bcrypt.compare(
       password,
       user.password
@@ -75,14 +78,14 @@ app.post("/login", async (req, res) => {
       return res.status(400).send("Invalid email or password");
     }
 
-    // 🔥 JWT TOKEN GENERATION
+    //  JWT TOKEN GENERATION
     const token = jwt.sign(
       { id: user._id, email: user.email },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
 
-    // send token to frontend
+     // Send user details and token to frontend
     res.json({
       message: "Login successful",
       token,
@@ -97,6 +100,7 @@ app.post("/login", async (req, res) => {
   }
 });
 
+// Protected dashboard route accessible only with a valid JWT token
 app.get("/dashboard", verifyToken, (req, res) => {
   res.json({
     message: "Dashboard Access Granted 🔐",

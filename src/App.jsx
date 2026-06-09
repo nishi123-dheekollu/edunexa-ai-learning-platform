@@ -7,10 +7,11 @@ function App() {
   return (
     <BrowserRouter>
       <Routes>
+          {/* Public routes accessible to all users */}
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
 
-        {/* 🔐 PROTECTED ROUTE */}
+        {/* Protected route accessible only to authenticated users */}
         <Route
           path="/dashboard"
           element={

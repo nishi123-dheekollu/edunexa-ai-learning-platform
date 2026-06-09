@@ -10,13 +10,15 @@ import { useNavigate } from "react-router-dom";
 
 function Login() {
 
-  // Form data states
+ // Form state management for authentication
   const [islogin, setIsLogin] = useState(true);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
   const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const [emailError, setEmailError] = useState("");
@@ -25,10 +27,11 @@ function Login() {
 
   const navigate = useNavigate();
 
+  // Handle login and signup form submission
   const handleSubmit = async (e) => {
   e.preventDefault();
   
-  //login 
+  // Authenticate user and generate JWT token
   if (islogin) {
     setTimeout(() => {
     setLoginError("");
@@ -36,17 +39,17 @@ function Login() {
 
   try {
     const response = await axios.post("http://localhost:5000/login", {
-      email,
-      password,
+      email: loginEmail,
+      password: loginPassword,
     });
 
-    localStorage.setItem("token", response.data.token);
+    localStorage.setItem("token", response.data.token); // Store JWT token in local storage for authenticated requests
 
      setLoginError("");
   
     setSuccess(response.data);
-    setEmail("");
-    setPassword("");
+    setLoginEmail("");
+    setLoginPassword("");
 
     navigate("/dashboard");
   } catch (error) {
@@ -57,8 +60,8 @@ function Login() {
   return;
 }
 
-  //sign up
-  if (password !== confirmPassword) {
+  // Validate password confirmation before registration
+  if (signupPassword !== confirmPassword) {
     setPasswordError("Passwords do not match");
 
     setTimeout(() => {
@@ -72,12 +75,13 @@ function Login() {
   setSuccess("");
 
   try {
+    // Send user registration data to backend
   const response = await axios.post(
     "http://localhost:5000/signup",
     {
       name,
-      email,
-      password
+      email: signupEmail,
+      password: signupPassword
     }
   );
 
@@ -87,8 +91,8 @@ function Login() {
 }, 3000);
 
   setName("");
-  setEmail("");
-  setPassword("");
+  setSignupEmail("");
+  setSignupPassword("");
   setConfirmPassword("");
   
 
@@ -106,21 +110,22 @@ function Login() {
     <div className="auth-wrapper">
     <div className="auth-card">
       
-      {/* heding */}
+     {/* Authentication page heading */}
       <h1 className="title">{islogin? "Welcome Back" : "Create Account"}</h1>
 
       <p className="subtitle">{islogin? "Login to continue your learning journey" : "Sign up to get started"}</p>
 
-      {/* Tabs */}
+      {/* Toggle between Login and Sign Up forms */}
       <div className="tabs">
         <button className={`tab ${islogin ? "active":""}`} onClick={() => setIsLogin(true)}>Login</button>
         <button className={`tab ${!islogin ? "active":""}`} onClick={() => setIsLogin(false)}>Sign Up</button>
       </div>
 
-      {/*Form */}
+      {/* Authentication form */}
       <form className="form" onSubmit={handleSubmit}>
         
         {/* Signup form */}
+        {/* Full name input field for new users */}
         {!islogin &&(<div className = "form-label">
           <label>Full Name </label>
           <div className="input-box">
@@ -130,23 +135,24 @@ function Login() {
           </div>)
 }
   
-
+{/* Email input field */}
         <div className="form-label">
             <label >Email Address</label>
             <div className="input-box">
                 <MdEmail className="icon"/> 
                 <input type="email" placeholder="Enter your Email" className="input"  
-                value={email} onChange={(e) => setEmail(e.target.value)}/>
+                value={islogin ? loginEmail : signupEmail} onChange={(e) => islogin ? setLoginEmail(e.target.value) : setSignupEmail(e.target.value)}/>
              </div>
         </div>
 
          {!islogin && emailError && (<p className="error-message">{emailError}</p>)}
 
+{/* Password input with visibility toggle */}
         <div className= "form-label">
             <label >Password</label>
             <div className="input-box">
                 <FaLock className="icon"/> 
-                <input type={showPassword ? "text" : "password"} placeholder="Enter your Password" className= "input" value={password} onChange={(e) => setPassword(e.target.value)}/>
+                <input type={showPassword ? "text" : "password"} placeholder="Enter your Password" className= "input" value={islogin ? loginPassword : signupPassword} onChange={(e) => islogin ? setLoginPassword(e.target.value) : setSignupPassword(e.target.value)}/>
                 <button type="button" className="toggle-password" onClick={() => setShowPassword(!showPassword)}>
                     {showPassword ? <FaEyeSlash /> : <FaEye />}
                 </button>
@@ -154,7 +160,8 @@ function Login() {
             </div>
         </div>
 
-        {/* signup for */}
+    
+        {/* Confirm password field for signup validation */}
         {!islogin &&(<div className="form-label">
           <label>Confirm Password</label>
           <div className= "input-box">
@@ -168,7 +175,7 @@ function Login() {
 
         {!islogin && ( passwordError && <p className="error-message">{passwordError}</p>)}
         
-        {/* login form*/}
+        {/* Forgot password link placeholder */}
         {islogin &&(
         <div className="forgot-box">
           <p className="forgot-password">Forgot Password?</p>
@@ -188,13 +195,6 @@ function Login() {
 
       </form>
 
-      {/*divider  */}
-      <div className="divider">
-        <hr className="divider-line"></hr>
-        <span>or continue with</span>
-        <hr className="divider-line"></hr>
-      </div>
-
       {/* signup form */}
       {islogin && (
         <div className="signup-text">
@@ -204,7 +204,7 @@ function Login() {
 
     </div>
 
-     {/* footer */}
+    {/* Security and support information */}
         <div className="footer">
 
           <div>
