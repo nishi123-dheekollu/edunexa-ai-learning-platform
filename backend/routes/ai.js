@@ -175,17 +175,15 @@ Remember previous conversation history.
 
   } catch (error) {
 
-    console.error(
-      "AI Error:",
-      error.response?.data || error.message
-    );
+  console.log("STATUS:", error.response?.status);
+  console.log("DATA:", JSON.stringify(error.response?.data, null, 2));
+  console.log("MESSAGE:", error.message);
 
-    res.status(500).json({
-      reply:
-        "AI ki connect avvadam lo problem ochindi. Oka nimisham wait chesi try chey! 🙏"
-    });
+  res.status(500).json({
+    error: error.response?.data || error.message
+  });
 
-  }
+}
 });
 
 // Get chat history for a user
