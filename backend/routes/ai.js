@@ -29,7 +29,7 @@ console.log("MESSAGE:", message);
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "meta-llama/llama-3.1-8b-instruct:free",
+        model: "deepseek/deepseek-chat-v3-0324:free",
 
         messages: [
           {
@@ -180,9 +180,12 @@ Remember previous conversation history.
 
   }  catch (error) {
 
-  console.log("===== CHAT ERROR=====");
-  console.log(error);
-  console.log(error.message);
+  console.log("===== CHAT ERROR =====");
+  console.log("STATUS:", error.response?.status);
+  console.log(
+    JSON.stringify(error.response?.data, null, 2)
+  );
+  console.log("MESSAGE:", error.message);
   console.log("=========================");
 
   res.status(500).json({
