@@ -173,14 +173,15 @@ Remember previous conversation history.
       reply: aiReply
     });
 
-  } catch (error) {
+  }  catch (error) {
 
-  console.log("STATUS:", error.response?.status);
-  console.log("DATA:", JSON.stringify(error.response?.data, null, 2));
-  console.log("MESSAGE:", error.message);
+  console.log("===== HISTORY ERROR =====");
+  console.log(error);
+  console.log(error.message);
+  console.log("=========================");
 
   res.status(500).json({
-    error: error.response?.data || error.message
+    message: error.message
   });
 
 }

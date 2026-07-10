@@ -5,6 +5,7 @@ import Sidebar from "../components/Sidebar";
 import ChatMessage from "../components/ChatMessage";
 import ChatInput from "../components/ChatInput";
 
+
 // AI Mentor page
 function AIMentor() {
 
@@ -78,7 +79,7 @@ function AIMentor() {
     try {
 
       const response = await axios.post(
-        "http://localhost:5000/api/ai/chat",
+        "https://learning-platform-muyw.onrender.com/api/ai/chat",
         {
           userId: localStorage.getItem("userId"),
           message: userMessage
