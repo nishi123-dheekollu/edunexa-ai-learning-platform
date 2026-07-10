@@ -24,7 +24,7 @@ function MyCourses() {
       try {
         const userId = localStorage.getItem("userId");
         const response = await axios.get(
-          `http://localhost:5000/api/progress/${userId}`
+          `https://learning-platform-muyw.onrender.com/api/progress/${userId}`
         );
         setCourseProgress(response.data.courses || {});
       } catch (error) {

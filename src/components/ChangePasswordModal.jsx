@@ -37,7 +37,7 @@ const [success, setSuccess] = useState("");
     const userId = localStorage.getItem("userId");
 
     const response = await axios.put(
-      `http://localhost:5000/api/profile/${userId}/password`,
+      `https://learning-platform-muyw.onrender.com/api/profile/${userId}/password`,
       {
         currentPassword,
         newPassword

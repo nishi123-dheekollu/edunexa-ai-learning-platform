@@ -62,7 +62,7 @@ useEffect(() => {
       const userId = localStorage.getItem("userId");
 
       const response = await axios.get(
-        `http://localhost:5000/api/progress/${userId}`
+        `https://learning-platform-muyw.onrender.com/api/progress/${userId}`
       );
 
       const course =
@@ -113,7 +113,7 @@ const handleComplete = async () => {
       localStorage.getItem("userId");
 
     await axios.put(
-      `http://localhost:5000/api/progress/${courseName}/${userId}`,
+      `https://learning-platform-muyw.onrender.com/api/progress/${courseName}/${userId}`,
       {
         completedTopics: updatedTopics,
         currentTopic: currentTopic,

@@ -33,7 +33,7 @@ function AIMentor() {
         const userId = localStorage.getItem("userId");
 
         const response = await axios.get(
-          `http://localhost:5000/api/ai/history/${userId}`
+          `https://learning-platform-muyw.onrender.com/api/ai/history/${userId}`
         );
 
         const history = response.data.map(chat => ({

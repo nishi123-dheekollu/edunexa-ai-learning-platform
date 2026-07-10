@@ -19,7 +19,7 @@ function EditProfileModal({
     const userId = localStorage.getItem("userId");
 
     const response = await axios.put(
-      `http://localhost:5000/api/profile/${userId}`,
+      `https://learning-platform-muyw.onrender.com/api/profile/${userId}`,
       {
         name
       }

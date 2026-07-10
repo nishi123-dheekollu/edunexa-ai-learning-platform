@@ -38,7 +38,7 @@ function Login() {
   }, 3000);
 
   try {
-    const response = await axios.post("http://localhost:5000/login", {
+    const response = await axios.post("https://learning-platform-muyw.onrender.com/login", {
       email: loginEmail,
       password: loginPassword,
     });
@@ -85,7 +85,7 @@ function Login() {
   try {
     // Send user registration data to backend
   const response = await axios.post(
-    "http://localhost:5000/signup",
+    "https://learning-platform-muyw.onrender.com/signup",
     {
       name,
       email: signupEmail,

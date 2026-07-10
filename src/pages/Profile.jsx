@@ -17,7 +17,7 @@ function Profile() {
         const userId = localStorage.getItem("userId");
 
         const response = await axios.get(
-          `http://localhost:5000/api/profile/${userId}`
+          `https://learning-platform-muyw.onrender.com/api/profile/${userId}`
         );
 
         setProfile(response.data);
