@@ -1,19 +1,21 @@
 require("dotenv").config();  // Load environment variables from .env file
 const jwt = require("jsonwebtoken"); 
 const verifyToken = require("./middleware/auth");
-
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-
+const progressRoutes =require("./routes/progressRoutes");
 const User = require("./models/User");// Import User model
-
 const app = express();// Create express application
+const aiRoutes = require("./routes/ai");
+const profileRoutes = require("./routes/profile");
 
 app.use(cors());// Allow requests from frontend applications
 app.use(express.json()); // Parse incoming JSON data
-
+app.use("/api/progress",progressRoutes);
+app.use("/api/ai", aiRoutes);
+app.use("/api/profile", profileRoutes);
 
 const MONGO_URI = process.env.MONGO_URI; // Get MongoDB connection string from .env file
 
@@ -43,11 +45,31 @@ if (existingUser) {
 }
 
   // Create a new user document
-  const newUser = new User({
-    name: req.body.name,
-    email: req.body.email,
-    password: hashedPassword
-  });
+  const emptyCourse = {
+  completedTopics: [],
+  currentTopic: 0,
+  progress: 0,
+  completed: false
+};
+
+const newUser = new User({
+  name: req.body.name,
+  email: req.body.email,
+  password: hashedPassword,
+
+  courses: {
+    html5: { ...emptyCourse },
+    css3: { ...emptyCourse },
+    javascript: { ...emptyCourse },
+    gitgithub: { ...emptyCourse },
+    reactjs: { ...emptyCourse },
+    nodejs: { ...emptyCourse },
+    expressjs: { ...emptyCourse },
+    mongodb: { ...emptyCourse },
+    restapis: { ...emptyCourse },
+    jwtauthentication: { ...emptyCourse }
+  }
+});
 
  try {
   await newUser.save();

@@ -43,7 +43,15 @@ function Login() {
       password: loginPassword,
     });
 
-    localStorage.setItem("token", response.data.token); // Store JWT token in local storage for authenticated requests
+    // Store JWT token in local storage for authenticated requests
+    localStorage.setItem("token", response.data.token); 
+
+    localStorage.setItem(
+  "userId",
+  response.data.user.id
+);
+    
+    localStorage.setItem("user",JSON.stringify(response.data.user));
 
      setLoginError("");
   
@@ -51,7 +59,7 @@ function Login() {
     setLoginEmail("");
     setLoginPassword("");
 
-    navigate("/dashboard");
+    navigate("/home")
   } catch (error) {
     setSuccess("");
     setLoginError(error.response.data);
@@ -117,8 +125,8 @@ function Login() {
 
       {/* Toggle between Login and Sign Up forms */}
       <div className="tabs">
-        <button className={`tab ${islogin ? "active":""}`} onClick={() => setIsLogin(true)}>Login</button>
-        <button className={`tab ${!islogin ? "active":""}`} onClick={() => setIsLogin(false)}>Sign Up</button>
+        <button className={`tab ${islogin ? "login-active":""}`} onClick={() => setIsLogin(true)}>Login</button>
+        <button className={`tab ${!islogin ? "login-active":""}`} onClick={() => setIsLogin(false)}>Sign Up</button>
       </div>
 
       {/* Authentication form */}

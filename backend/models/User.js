@@ -1,22 +1,38 @@
 const mongoose = require("mongoose");
 
-// Define the schema for user data
-const userSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      required: true // User name is mandatory
-    },
-    email: {
-       type: String,
-       required: true, // Email is mandatory
-       unique: true  // Prevent duplicate email registrations
-   },
-   password: {
-  type: String,
-  required: true  // Store hashed password
-}
-});
+const courseProgress = {
+  completedTopics: { type: [Number], default: [] },
+  currentTopic: { type: Number, default: 0 },
+  progress: { type: Number, default: 0 },
+  completed: { type: Boolean, default: false }
+};
 
-// Create User model from schema
+const userSchema = new mongoose.Schema(
+  {
+    name: { type: String, required: true },
+    email: { type: String, required: true, unique: true },
+    password: { type: String, required: true },
+
+    streakCount: { type: Number, default: 0 },
+    lastActiveDate: { type: Date, default: null },
+
+    courses: {
+      html5: courseProgress,
+      css3: courseProgress,
+      javascript: courseProgress,
+      gitgithub: courseProgress,
+      reactjs: courseProgress,
+      nodejs: courseProgress,
+      expressjs: courseProgress,
+      mongodb: courseProgress,
+      restapis: courseProgress,
+      jwtauthentication: courseProgress
+    }
+  },
+  {
+    timestamps: true
+  }
+);
+
 const User = mongoose.model("User", userSchema);
-module.exports = User;  // Export the model for use in other files
+module.exports = User;
