@@ -20,11 +20,16 @@ router.post("/chat", async (req, res) => {
       createdAt: 1
     });
 
+    console.log("API KEY EXISTS:", !!process.env.OPENROUTER_API_KEY);
+console.log("USER ID:", userId);
+console.log("MESSAGE:", message);
+
+
     // Request AI response from OpenRouter
     const response = await axios.post(
       "https://openrouter.ai/api/v1/chat/completions",
       {
-        model: "openrouter/free",
+        model: "meta-llama/llama-3.1-8b-instruct:free",
 
         messages: [
           {
@@ -175,7 +180,7 @@ Remember previous conversation history.
 
   }  catch (error) {
 
-  console.log("===== HISTORY ERROR =====");
+  console.log("===== CHAT ERROR=====");
   console.log(error);
   console.log(error.message);
   console.log("=========================");
