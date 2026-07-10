@@ -202,8 +202,12 @@ router.get("/history/:userId", async (req, res) => {
 
   } catch (error) {
 
+    console.log("===== HISTORY ERROR =====");
+    console.log(error);
+    console.log("=========================");
+
     res.status(500).json({
-      message: "Unable to fetch chat history"
+      message: error.message
     });
 
   }
