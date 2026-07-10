@@ -1,99 +1,223 @@
-# Learning Platform Authentication System
+# 🚀 EduNexa – AI Powered MERN Learning Platform
 
-## Overview
+EduNexa is a full-stack MERN learning platform that helps students learn web development through structured courses, progress tracking, and an AI Mentor powered by OpenRouter.
 
-A full-stack authentication system built using React.js, Node.js, Express.js, MongoDB Atlas, JWT, and bcrypt.
+---
 
-This project allows users to register, log in securely, and access protected routes using JSON Web Tokens (JWT).
+## 🌐 Live Demo
 
-## Features
+🔗 https://learningplatform-mocha.vercel.app/login
 
-* User Registration
-* User Login
-* JWT Authentication
-* Protected Dashboard Route
-* Password Hashing with bcrypt
-* MongoDB Atlas Integration
-* Logout Functionality
-* Token Expiration Validation
+---
 
-## Tech Stack
+## 📂 GitHub Repository
 
-### Frontend
+🔗 https://github.com/nishi123-dheekollu/jwt-auth-project
 
-* React.js
-* React Router DOM
-* Axios
-* React Icons
+---
 
-### Backend
+# 📌 Features
 
-* Node.js
-* Express.js
+### 🔐 Authentication
+- User Signup
+- User Login
+- JWT Authentication
+- Protected Routes
+- Persistent Login
 
-### Database
+---
 
-* MongoDB Atlas
-* Mongoose
+### 📚 Learning Platform
+- Dashboard
+- Course Roadmap
+- Progress Tracking
+- Unlock Next Course
+- Completed Course Tracking
 
-### Authentication & Security
+---
 
-* JWT (JSON Web Token)
-* bcrypt
+### 🤖 AI Mentor
+- AI-powered learning assistant
+- Markdown support
+- Syntax Highlighting
+- Code Block Rendering
+- Typing Animation
+- Conversation History
+- MongoDB Chat Storage
+- Context-aware Responses
 
-## Project Structure
+---
 
-learning-platform/
+### 👤 Profile
+- User Profile
+- Learning Statistics
+- Overall Progress
+- AI Conversation Count
+
+---
+
+# 🛠 Tech Stack
+
+## Frontend
+
+- React.js
+- React Router
+- Axios
+- React Markdown
+- React Syntax Highlighter
+- CSS3
+
+---
+
+## Backend
+
+- Node.js
+- Express.js
+- JWT
+- bcrypt
+- MongoDB
+- Mongoose
+
+---
+
+## Database
+
+- MongoDB Atlas
+
+---
+
+## AI Integration
+
+- OpenRouter API
+- Llama 3.1 / Free Models
+
+---
+
+## Deployment
+
+- Frontend → Vercel
+- Backend → Render
+- Database → MongoDB Atlas
+
+---
+
+# 📁 Project Structure
+
+```
+EduNexa
+
+Frontend
 │
-├── backend/
-│ ├── middleware/
-│ ├── models/
-│ └── server.js
+├── React
+├── Components
+├── Pages
+├── Routes
+├── CSS
+└── API
+
+Backend
 │
-├── src/
-│ ├── components/
-│ ├── pages/
-│ └── App.jsx
+├── Express
+├── Routes
+├── Models
+├── Middleware
+├── JWT Authentication
+└── AI Mentor API
+
+Database
 │
-└── README.md
+└── MongoDB Atlas
+```
 
-## Installation
+---
 
-### Clone Repository
+# ⚡ Installation
 
-git clone <repository-url>
+## Clone Repository
 
-### Install Frontend Dependencies
+```bash
+git clone https://github.com/nishi123-dheekollu/jwt-auth-project.git
+```
+
+---
+
+## Frontend
+
+```bash
+cd learning-platform
 
 npm install
-
-### Install Backend Dependencies
-
-cd backend
-npm install
-
-### Start Backend Server
-
-npm start
-
-### Start Frontend
 
 npm run dev
+```
 
-## Screenshots
+---
 
-### Login Page
+## Backend
 
-![Login Page](Screenshots/login.png)
+```bash
+cd backend
 
-### Signup Page
+npm install
 
-![Signup Page](Screenshots/signup.png)
+npm start
+```
 
-### Dashboard
+---
 
-![Dashboard](Screenshots/dashboard.png)
+# 🔑 Environment Variables
 
-## Author
+Create a `.env` file inside the backend folder.
 
-Nishitha Dheekollu
+```env
+PORT=5000
+
+MONGO_URI=YOUR_MONGODB_URI
+
+JWT_SECRET=YOUR_SECRET_KEY
+
+OPENROUTER_API_KEY=YOUR_OPENROUTER_API_KEY
+```
+
+---
+
+# 📸 Screens
+
+- Login Page
+- Dashboard
+- My Courses
+- AI Mentor
+- Profile Page
+
+---
+
+# 🎯 Future Improvements
+
+- Quiz System
+- Certificates
+- Dark Mode
+- Notes Feature
+- Course Search
+- AI Voice Mentor
+- Coding Playground
+- Admin Dashboard
+
+---
+
+# 👩‍💻 Author
+
+**Nishitha Dheekollu**
+
+Full Stack Developer
+
+LinkedIn:
+(Add your LinkedIn Profile)
+
+GitHub:
+https://github.com/nishi123-dheekollu
+
+---
+
+# ⭐ If you like this project
+
+Give this repository a ⭐ on GitHub.
