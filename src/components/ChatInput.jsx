@@ -1,3 +1,5 @@
+import { FiSend } from "react-icons/fi";
+
 // Chat input component
 function ChatInput({
   input,
@@ -24,8 +26,8 @@ function ChatInput({
 
       {/* Send button */}
       <button onClick={handleSend}>
-        Send
-      </button>
+  <FiSend />
+</button>
 
     </div>
 

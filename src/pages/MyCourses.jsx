@@ -6,19 +6,21 @@ import { TbApi } from "react-icons/tb";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+// My Courses page 
 function MyCourses() {
-  const navigate = useNavigate();
-  const slugify = (name) => name.toLowerCase().replace(/[^a-z0-9]/g, "");
+  const navigate = useNavigate();  /* Navigation hook */
+  const slugify = (name) => name.toLowerCase().replace(/[^a-z0-9]/g, "");  // Convert course names into URL-friendly slugs 
+  const [courseProgress, setCourseProgress] = useState({}); // Store course progress received from backend 
+  const [loading, setLoading] = useState(true);  // Loading state while fetching progress 
 
-  const [courseProgress, setCourseProgress] = useState({});
-  const [loading, setLoading] = useState(true);
-
+// Learning roadmap order used for locking/unlocking courses 
   const courseOrder = [
     "html5", "css3", "javascript", "gitgithub",
     "reactjs", "nodejs", "expressjs", "mongodb",
     "restapis", "jwtauthentication"
   ];
 
+// Fetch user's course progress 
   useEffect(() => {
     const fetchProgress = async () => {
       try {
@@ -36,6 +38,7 @@ function MyCourses() {
     fetchProgress();
   }, []);
 
+  // Static course information 
   const courses = [
     { id: 1, icon: <FaHtml5 color="#E34F26" />, name: "HTML5", level: "Beginner", topics: 43, duration: "3 Hours" },
     { id: 2, icon: <FaCss3Alt color="#1572B6" />, name: "CSS3", level: "Beginner", topics: 42, duration: "5 Hours" },
@@ -49,13 +52,14 @@ function MyCourses() {
     { id: 10, icon: <SiJsonwebtokens color="#FF9800" />, name: "JWT Authentication", level: "Advanced", topics: 18, duration: "3 Hours" },
   ];
 
-  // Determine unlock status based on previous course completion:
+ /* Check whether the current course is unlocked */
   const isUnlocked = (index) => {
     if (index === 0) return true; // First course always unlocked
     const prevSlug = courseOrder[index - 1];
     return courseProgress[prevSlug]?.completed === true;
   };
 
+  /* Get progress percentage of a course */
   const getProgress = (index) => {
     const slug = courseOrder[index];
     return courseProgress[slug]?.progress || 0;
@@ -63,16 +67,20 @@ function MyCourses() {
 
   return (
     <div className="home-page">
+      {/* Sidebar Navigation  */}
       <Sidebar />
 
+      {/* Page Heading */}
       <div className="hero">
         <h1>My Learning Roadmap</h1>
         <p>Follow the roadmap and become a MERN Stack Developer.</p>
 
+        {/* Display loading state until progress is fetched */}
         {loading ? (
           <p style={{ padding: "20px" }}>Loading your progress...</p>
         ) : (
           <div className="roadmap-container">
+            {/* Course roadmap cards */}
             {courses.map((course, index) => {
               const unlocked = isUnlocked(index);
               const progress = getProgress(index);
@@ -82,7 +90,7 @@ function MyCourses() {
               return (
                 <div
                   className={`roadmap-card ${unlocked ? "unlocked-card" : "locked-card"}`}
-                  key={index}
+                  key={course.id}
                 >
                   <div className="roadmap-info">
                     <h3 className="course-title">
@@ -98,7 +106,7 @@ function MyCourses() {
                       Duration: {course.duration}
                     </p>
 
-                    {/* Progress bar on card: */}
+                    {/* Course progress */}
                     <p className="progress-percentage">{progress}% Complete</p>
 
                     {!unlocked && (
@@ -123,14 +131,21 @@ function MyCourses() {
                       "Start Course"
                     )}
                   </button>
+
                 </div>
               );
+
             })}
           </div>
+
         )}
+
       </div>
+
     </div>
+
   );
+
 }
 
 export default MyCourses;

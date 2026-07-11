@@ -3,19 +3,21 @@ import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+{/* Dashboard home page */}
 function Home() {
   const navigate = useNavigate();
-  const user = JSON.parse(localStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user")); {/* Get logged-in user information */}
   const hour = new Date().getHours();
 
   const [progressData, setProgressData] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  let greeting = "";
+  let greeting = ""; {/* Display greeting based on current time */}
   if (hour < 12) greeting = "Good Morning";
   else if (hour < 18) greeting = "Good Afternoon";
   else greeting = "Good Evening";
 
+  {/* Fetch user's learning progress from backend */}
   useEffect(() => {
     const fetchProgress = async () => {
       try {
@@ -33,7 +35,7 @@ function Home() {
     fetchProgress();
   }, []);
 
-  // Calculate stats from real data:
+ {/* Calculate dashboard statistics from progress data */}
   const totalTopics = {
     html5: 43, css3: 42, javascript: 45, gitgithub: 28,
     reactjs: 40, nodejs: 35, expressjs: 25, mongodb: 28,
@@ -44,6 +46,7 @@ function Home() {
   let completedCourses = 0;
   let totalCompletedTopics = 0;
 
+  {/* Count completed courses and topics */}
   if (progressData?.courses) {
     Object.entries(progressData.courses).forEach(([key, val]) => {
       if (val?.completed) completedCourses++;
@@ -51,17 +54,20 @@ function Home() {
     });
   }
 
+  { /* Calculate overall learning progress percentage */ }
   const overallProgress = grandTotal > 0
     ? Math.round((totalCompletedTopics / grandTotal) * 100)
     : 0;
 
-  const streakCount = progressData?.streakCount || 0;
+  const streakCount = progressData?.streakCount || 0;  // Get current learning streak
 
   return (
     <div className="home-page">
+    {/* Sidebar Navigation */} 
       <Sidebar />
 
       <div className="hero">
+        {/* Welcome section with personalized greeting */} 
         <div className="top-header">
           <div className="welcome-section">
             <h1>{greeting}, {user?.name}</h1>
@@ -79,6 +85,7 @@ function Home() {
           </div>
         </div>
 
+        { /* Dashboard statistics cards */} 
         <div className="stats-container">
           <div className="home-stat-card">
             <h2>10</h2>
@@ -118,6 +125,7 @@ function Home() {
 
         <h2 className="section-title">MERN Stack Learning Roadmap</h2>
 
+       { /* MERN Stack learning roadmap banner */ }
         <div className="hero-banner">
           <h2>Complete MERN Roadmap</h2>
           <div className="roadmap-points">
@@ -135,6 +143,7 @@ function Home() {
           </button>
         </div>
 
+        { /* Daily motivation section */} 
         <div className="quote-card">
           <h3>💡 Daily Motivation</h3>
           <p>Consistency beats talent when talent doesn't work hard.</p>

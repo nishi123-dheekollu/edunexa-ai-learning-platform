@@ -5,9 +5,9 @@ import Sidebar from "../components/Sidebar";
 import ChatMessage from "../components/ChatMessage";
 import ChatInput from "../components/ChatInput";
 
-// AI Mentor Page
+// AI Mentor Page - Allows users to chat with the AI mentor
 function AIMentor() {
-  // Chat messages
+  // Stores all chat messages
   const [messages, setMessages] = useState([
     {
       id: 1,
@@ -16,13 +16,13 @@ function AIMentor() {
     },
   ]);
 
-  // User input
+  // Stores current user input
   const [input, setInput] = useState("");
 
-  // Typing animation
+  // Controls AI typing animation
   const [isTyping, setIsTyping] = useState(false);
 
-  // Load previous chat history
+ // Fetch previously saved chat history when page loads
   useEffect(() => {
     const fetchHistory = async () => {
       try {
@@ -42,14 +42,14 @@ function AIMentor() {
           setMessages(history);
         }
       } catch (error) {
-        console.error("Unable to load chat history.");
+        console.error("Unable to load chat history.", error);
       }
     };
 
     fetchHistory();
   }, []);
 
-  // Send message
+  // Send user's message to backend and receive AI response
   const handleSend = async () => {
     if (!input.trim()) return;
 
@@ -61,7 +61,7 @@ function AIMentor() {
       text: userMessage,
     };
 
-    // Show user message immediately
+   // Display user's message immediately
     setMessages((prev) => [...prev, newMessage]);
 
     setInput("");
@@ -81,9 +81,12 @@ function AIMentor() {
         sender: "ai",
         text: response.data.reply,
       };
-
+ 
+      // Display AI response after receiving backend reply
       setMessages((prev) => [...prev, aiReply]);
-    } catch (error) {
+    } 
+    // Show fallback message if API request fails
+    catch (error) {
       setMessages((prev) => [
         ...prev,
         {

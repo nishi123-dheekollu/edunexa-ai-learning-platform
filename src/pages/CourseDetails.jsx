@@ -41,18 +41,21 @@ const courseTopicsMap = {
   jwtauthentication: jwtTopics
 };
 
+// Course Details page - Displays course lessons and tracks user progress
 function CourseDetails() {
   const { courseName } = useParams();
   const navigate = useNavigate();
-  const [completedTopics, setCompletedTopics] = useState([]);
-  const [currentTopic, setCurrentTopic] = useState(0);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [completedTopics, setCompletedTopics] = useState([]); // Stores completed topics fetched from database
+  const [currentTopic, setCurrentTopic] = useState(0); // Stores currently selected lesson
+  const [searchQuery, setSearchQuery] = useState("");  // Search bar state
+  
+  // Load lessons and topics based on selected course
   const lessons = courseLessonsMap[courseName] || [];
   const lesson = lessons[currentTopic];
 
   const topics = courseTopicsMap[courseName] || [];
 
-
+// Fetch user's saved course progress from MongoDB
 useEffect(() => {
 
   const fetchProgress = async () => {
@@ -88,7 +91,7 @@ useEffect(() => {
 
 }, [courseName]);
 
-
+// Mark current topic as completed and save progress
 const handleComplete = async () => {
 
   let updatedTopics = [...completedTopics];
@@ -131,6 +134,7 @@ const handleComplete = async () => {
 
 };
 
+// Move to next topic only after completing current topic
 const handleNext = () => {
 
  
@@ -145,6 +149,7 @@ const handleNext = () => {
 
 };
 
+// Navigate to previous lesson
 const handlePrevious = () => {
   if (currentTopic > 0) {
     const prevTopic = currentTopic - 1;
@@ -176,6 +181,7 @@ if (!lesson) {
   onClick={() => navigate("/MyCourses")}>← Back
 </div>
 
+{/* Filter topics based on search input */}
 <div className="search-container">
   <FiSearch className="search-icon"/>
 

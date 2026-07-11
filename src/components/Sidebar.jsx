@@ -1,9 +1,13 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import {FaHome,FaBook,FaRobot,FaUser,FaChartLine} from "react-icons/fa";
 
+// Sidebar component
 function Sidebar() {
+
+   // Navigation hook
   const navigate = useNavigate();
-const location = useLocation();
+   // Get current route for active menu
+  const location = useLocation();
 
   return (
     <div className="sidebar">

@@ -6,11 +6,16 @@ import { FiEdit2 } from "react-icons/fi";
 import EditProfileModal from "../components/EditProfileModal";
 import ChangePasswordModal from "../components/ChangePasswordModal";
 
+// Profile page
 function Profile() {
+  // Store profile data
   const [profile, setProfile] = useState(null);
+  // Edit profile modal visibility
   const [showEdit, setShowEdit] = useState(false);
+   // Change password modal visibility
   const [showPasswordModal, setShowPasswordModal] = useState(false);
 
+   // Fetch profile details from backend
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -32,17 +37,19 @@ function Profile() {
 
   return (
     <div className="home-page">
-
+      {/* Sidebar */}
       <Sidebar />
 
+      {/* Main Content */}
       <div className="hero">
-
+        {/* Page Header */}
         <div className="profile-header">
 
           <h1>My Profile</h1>
 
         </div>
-
+        
+        {/* Show loading until profile data arrives */}
         {!profile ? (
 
           <h2>Loading...</h2>
@@ -50,7 +57,8 @@ function Profile() {
         ) : (
 
           <div className="profile-container">
-
+   
+           {/* Profile Card */}
             <div className="profile-card">
 
               <button
@@ -59,7 +67,7 @@ function Profile() {
 >
   <FiEdit2 />
 </button>
-
+             {/* User Avatar & Basic Information */}
               <div className="profile-top">
 
                 <div className="profile-avatar">
@@ -84,6 +92,7 @@ function Profile() {
                 📚 Learning Statistics
               </h3>
 
+              {/* Learning Statistics */}
               <div className="profile-stats">
 
                 <div className="profile-stat-card">
@@ -130,6 +139,7 @@ function Profile() {
 
               <hr className="profile-divider" />
 
+              {/* Change Password Modal */}
               <button
                 className="change-password-full-btn"
                 onClick={() => setShowPasswordModal(true)}

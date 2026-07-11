@@ -7,8 +7,23 @@
 }
 
 body{
-  font-family: 'Poppins', sans-serif;
-  background:#f5f7ff;
+  margin:0;
+  padding:0;
+  font-family:'Poppins',sans-serif;
+  background:#faf8f5;
+}
+
+a{
+  text-decoration:none;
+}
+
+button{
+  font-family:inherit;
+}
+
+input,
+button{
+  outline:none;
 }
 
 .container{
@@ -108,8 +123,7 @@ body{
   border:1px solid #cbd5e1;
   border-radius:10px;
   font-size:14px;
-  outline:none;
-  transition:0.3s;
+  transition:.3s;
 } 
 
 .toggle-password{
@@ -196,10 +210,14 @@ body{
   display:flex;
   justify-content:space-between;
   margin-top:30px;
-  font-size:13px;
-  color:#64748b;
-  gap:10px;
+  gap:15px;
   flex-wrap:wrap;
+}
+
+.footer div{
+  display:flex;
+  align-items:center;
+  gap:6px;
 }
 
 /* TABLET */
@@ -224,51 +242,47 @@ body{
 }
 
 /* MOBILE */
-@media (max-width: 480px) {
+@media (max-width:480px){
 
-  .auth-card {
-    padding: 22px;
-    border-radius: 18px;
+  .container{
+    padding:15px;
   }
 
-  .title {
-    font-size: 28px;
+  .auth-card{
+    padding:22px;
+    border-radius:18px;
   }
 
-  .subtitle {
-    font-size: 14px;
-    margin-bottom: 25px;
+  .title{
+    font-size:28px;
   }
 
-  .input {
-    padding: 14px, 14px, 14px, 45px;
-    font-size: 14px;
+  .subtitle{
+    font-size:14px;
+    margin-bottom:25px;
   }
 
-  .login-btn {
-    padding: 14px;
-    font-size: 16px;
+  .tab{
+    font-size:15px;
+    padding:12px;
   }
 
-  .social-buttons {
-    flex-direction: column;
+  .input{
+    font-size:14px;
+    padding:14px 14px 14px 45px;
   }
 
-  .footer-text {
-    flex-direction: column;
-    gap: 10px;
-    align-items: center;
+  .login-btn{
+    padding:14px;
+    font-size:16px;
   }
 
-}
+  .footer{
+    justify-content:center;
+    gap:15px;
+    text-align:center;
+  }
 
-
-
-body {
-  background-color: #faf8f5;
-    margin: 0;
-  padding: 0;
-  font-family: Arial, sans-serif;
 }
 
 .home-page{
@@ -339,12 +353,124 @@ body {
   cursor:pointer;
 }
 
+/* ===========================
+   Sidebar Responsive Design
+=========================== */
 
+/* Laptop */
+@media (max-width:992px){
+
+  .sidebar{
+    width:220px;
+    padding:25px 15px;
+  }
+
+  .sidebar h2{
+    font-size:28px;
+  }
+
+  .sidebar li{
+    padding:12px 14px;
+    font-size:15px;
+  }
+
+}
+
+/* Tablet */
+@media (max-width:768px){
+
+  .sidebar{
+    width:80px;
+    padding:20px 10px;
+    align-items:center;
+  }
+
+  .sidebar h2,
+  .tagline,
+  .sidebar li span{
+    display:none;
+  }
+
+  .sidebar ul{
+    width:100%;
+  }
+
+  .sidebar li{
+    justify-content:center;
+    padding:14px;
+    margin-bottom:15px;
+    gap:0;
+  }
+
+  .sidebar li svg{
+    font-size:22px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:480px){
+
+  .sidebar{
+    width:100%;
+    height:70px;
+
+    left:0;
+    top:auto;
+    bottom:0;
+
+    padding:0 10px;
+
+    flex-direction:row;
+    justify-content:center;
+    align-items:center;
+
+    z-index:1000;
+  }
+
+  .sidebar h2,
+  .tagline{
+    display:none;
+  }
+
+  .sidebar > div{
+    width:100%;
+  }
+
+  .sidebar ul{
+    display:flex;
+    justify-content:space-around;
+    align-items:center;
+    width:100%;
+  }
+
+  .sidebar li{
+    margin:0;
+    padding:10px;
+    border-radius:10px;
+    justify-content:center;
+    gap:0;
+  }
+
+  .sidebar li span{
+    display:none;
+  }
+
+  .sidebar li svg{
+    font-size:22px;
+  }
+
+  .logout-btn{
+    display:none;
+  }
+
+}
 
 .hero{
   flex:1;
-  padding:50px;
+  padding:40px;
   margin-left:260px;
+  overflow-x:hidden;
 }
 
 .hero h1{
@@ -367,9 +493,7 @@ body {
 .welcome-section{
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
-  align-items:center;
-  margin-bottom:30px;
+  align-items:flex-start;
 }
 
 .welcome-section h1{
@@ -436,9 +560,69 @@ body {
 .search-icon{
   position:absolute;
   left:20px;
-  top:30%;
+  top:33%;
   transform:translateY(-50%);
   color:#888;
+}
+
+/* ==========================
+   Search Bar Responsive
+========================== */
+
+/* Laptop */
+@media (max-width:992px){
+
+  .search-bar{
+    padding:14px 18px;
+    padding-left:42px;
+    font-size:15px;
+  }
+
+  .search-icon{
+    left:18px;
+    top:33%;
+  }
+
+}
+
+/* Tablet */
+@media (max-width:768px){
+
+  .search-bar{
+    padding:13px 16px;
+    padding-left:40px;
+    font-size:15px;
+  }
+
+  .search-icon{
+    left:16px;
+    top:30%;
+    font-size:16px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:480px){
+
+  .search-container{
+    width:100%;
+  }
+
+  .search-bar{
+    width:100%;
+    padding:12px 14px;
+    padding-left:38px;
+    font-size:14px;
+    margin-bottom:18px;
+  }
+
+  .search-icon{
+    left:14px;
+    top:30%;
+    font-size:15px;
+  }
+
 }
 
 .stats-container{
@@ -567,6 +751,114 @@ body {
   color:#555;
 }
 
+/* home page tablet responsive */
+@media (max-width:992px){
+
+.hero{
+    margin-left:0;
+    padding:25px;
+}
+
+.top-header{
+    flex-direction:column;
+    align-items:flex-start;
+    gap:20px;
+}
+
+.profile-mini{
+    width:100%;
+}
+
+.stats-container{
+    grid-template-columns:repeat(2,1fr);
+}
+
+.hero-banner h2{
+    font-size:28px;
+}
+
+}
+
+/* hpme page mobile responsive */
+@media (max-width:768px){
+
+.hero{
+    padding:18px;
+}
+
+.top-header{
+    flex-direction:column;
+    align-items:flex-start;
+}
+
+.welcome-section h1{
+    font-size:30px;
+}
+
+.welcome-section p{
+    font-size:14px;
+}
+
+.stats-container{
+    grid-template-columns:1fr;
+}
+
+.home-stat-card{
+    min-height:150px;
+}
+
+.hero-banner{
+    padding:25px;
+}
+
+.hero-banner h2{
+    font-size:24px;
+}
+
+.roadmap-points p{
+    font-size:15px;
+}
+
+.start-learning-btn{
+    width:100%;
+    margin-top:15px;
+}
+
+.quote-card{
+    padding:18px;
+}
+
+}
+
+/* very small mobile responsive */
+@media (max-width:480px){
+
+.hero{
+    padding:15px;
+}
+
+.welcome-section h1{
+    font-size:26px;
+}
+
+.hero-banner{
+    border-radius:18px;
+}
+
+.home-stat-card h2{
+    font-size:28px;
+}
+
+.home-stat-card h3{
+    font-size:16px;
+}
+
+.profile-mini{
+    padding:10px 14px;
+}
+
+}
+
 .roadmap-container {
   display: flex;
   flex-direction: column;
@@ -664,6 +956,71 @@ body {
   background: #d1d5db;
   cursor: not-allowed;
   opacity: 0.8;
+}
+
+/* my course page  TABLET fresponsive*/
+@media (max-width:768px){
+
+.hero{
+  margin-left:0;
+  padding:30px;
+}
+
+.hero h1{
+  font-size:34px;
+}
+
+.roadmap-card{
+  flex-direction:column;
+  align-items:flex-start;
+  gap:20px;
+}
+
+.start-btn{
+  width:100%;
+}
+
+}
+
+/* my courses page MOBILE responsive*/
+@media (max-width:480px){
+
+.hero{
+  padding:20px;
+}
+
+.hero h1{
+  font-size:28px;
+}
+
+.hero p{
+  font-size:14px;
+}
+
+.course-title{
+  font-size:18px;
+}
+
+.course-icon{
+  font-size:22px;
+}
+
+.course-level,
+.course-duration,
+.progress-percentage,
+.locked-text{
+  font-size:13px;
+}
+
+.roadmap-card{
+  padding:18px;
+}
+
+.start-btn{
+  width:100%;
+  padding:14px;
+}
+
 }
 
 .course-sidebar{
@@ -853,6 +1210,95 @@ body {
   color:white;
 }
 
+/* course details page TABLET responsive */
+@media (max-width:768px){
+
+.course-sidebar{
+    width:220px;
+}
+
+.lesson-header h1{
+    font-size:34px;
+}
+
+.lesson-section h2{
+    font-size:26px;
+}
+
+.lesson-section p,
+.lesson-section li{
+    font-size:16px;
+}
+
+.code-block{
+    font-size:14px;
+}
+
+}
+
+/* course details page  MOBILE responsive */
+@media (max-width:480px){
+
+.course-sidebar{
+    position:relative;
+    width:100%;
+    height:auto;
+}
+
+.home-page{
+    flex-direction:column;
+}
+
+.hero{
+    margin-left:0;
+    padding:20px;
+}
+
+.lesson-header{
+    margin-bottom:30px;
+}
+
+.lesson-header h1{
+    font-size:28px;
+}
+
+.lesson-subtitle{
+    font-size:15px;
+}
+
+.lesson-section{
+    margin-bottom:35px;
+}
+
+.lesson-section h2{
+    font-size:22px;
+}
+
+.lesson-section p,
+.lesson-section li{
+    font-size:15px;
+    line-height:1.8;
+}
+
+.lesson-nav-buttons{
+    flex-direction:column;
+}
+
+.nav-btn{
+    width:100%;
+}
+
+.complete-btn{
+    font-size:15px;
+}
+
+.code-block{
+    font-size:13px;
+    padding:18px;
+}
+
+}
+
 .ai-message{
   background:#fff;
   padding:16px 20px;
@@ -935,17 +1381,26 @@ body {
 }
 
 .chat-input button{
-  padding:15px 26px;
+  width:52px;
+  height:52px;
   border:none;
-  border-radius:12px;
+  border-radius:50%;
   background:#0f766e;
   color:white;
-  font-weight:600;
+  display:flex;
+  justify-content:center;
+  align-items:center;
   cursor:pointer;
+  transition:.3s;
 }
 
 .chat-input button:hover{
   background:#115e59;
+  transform:scale(1.05);
+}
+
+.chat-input button svg{
+  font-size:22px;
 }
 
 .typing{
@@ -1022,6 +1477,65 @@ body {
   padding-left:16px;
   margin:16px 0;
   color:#555;
+}
+
+/* ai mentor page TABLET responsive */
+@media (max-width:768px){
+
+.chat-container{
+    height:75vh;
+}
+
+.chat-body{
+    padding:22px;
+}
+
+.ai-message,
+.user-message{
+    max-width:85%;
+}
+
+}
+
+/* ai mentor page MOBILE responsive */
+@media (max-width:480px){
+
+.chat-container{
+    height:80vh;
+    border-radius:14px;
+}
+
+.chat-body{
+    padding:15px;
+    gap:16px;
+}
+
+.ai-message,
+.user-message{
+    max-width:100%;
+    padding:14px 16px;
+}
+
+.message-text{
+    font-size:15px;
+}
+
+.chat-input{
+    padding:14px;
+}
+
+.chat-input{
+    flex-direction:column;
+}
+
+.chat-input input{
+    width:100%;
+}
+
+.chat-input button{
+    width:100%;
+}
+
 }
 
 .profile-container{
@@ -1299,6 +1813,36 @@ body {
     color:white;
 }
 
+.error-message{
+  color:#dc2626;
+  background:#fee2e2;
+  border:1px solid #fecaca;
+  padding:10px 14px;
+  border-radius:8px;
+  margin-bottom:18px;
+  font-size:14px;
+}
+
+.success-message{
+  color:#15803d;
+  background:#dcfce7;
+  border:1px solid #bbf7d0;
+  padding:10px 14px;
+  border-radius:8px;
+  margin-bottom:18px;
+  font-size:14px;
+}
+
+@media(max-width:480px){
+
+  .error-message,
+  .success-message{
+    font-size:13px;
+    padding:10px;
+  }
+
+}
+
 .profile-header{
     display:flex;
     justify-content:space-between;
@@ -1309,4 +1853,292 @@ body {
 .profile-actions{
     display:flex;
     gap:15px;
+}
+
+/* Profile Page   Laptop Responsive */
+@media (max-width:992px){
+
+    .profile-card{
+        max-width:100%;
+        padding:28px;
+    }
+
+    .profile-avatar{
+        width:80px;
+        height:80px;
+        font-size:32px;
+    }
+
+    .profile-top h2{
+        font-size:26px;
+    }
+
+    .profile-stats{
+        gap:16px;
+    }
+
+}
+
+/*  Profile Page Tablet Responsive */
+@media (max-width:768px){
+
+    .profile-card{
+        padding:24px;
+    }
+
+    .profile-stats{
+        grid-template-columns:1fr;
+    }
+
+    .stats-title{
+        font-size:20px;
+    }
+
+    .profile-stat-card h3{
+        font-size:24px;
+    }
+
+    .change-password-full-btn{
+        font-size:15px;
+    }
+
+}
+
+/*  Profile Page Mobile Responsive */
+@media (max-width:480px){
+
+    .profile-card{
+        padding:20px;
+        border-radius:16px;
+    }
+
+    .profile-avatar{
+        width:70px;
+        height:70px;
+        font-size:28px;
+    }
+
+    .profile-top h2{
+        font-size:22px;
+    }
+
+    .profile-email{
+        font-size:14px;
+        word-break:break-word;
+    }
+
+    .profile-stat-card{
+        padding:18px;
+    }
+
+    .stat-icon{
+        font-size:22px;
+    }
+
+    .profile-stat-card h3{
+        font-size:22px;
+    }
+
+    .edit-modal{
+        width:92%;
+        padding:24px;
+    }
+
+    .modal-buttons{
+        flex-direction:column;
+    }
+
+    .modal-buttons button{
+        width:100%;
+    }
+
+}
+
+/* ==========================
+   Edit Profile Modal Responsive
+========================== */
+
+/* Tablet */
+@media (max-width:768px){
+
+  .edit-modal{
+    width:90%;
+    padding:25px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:480px){
+
+  .modal-overlay{
+    padding:15px;
+  }
+
+  .edit-modal{
+    width:100%;
+    padding:20px;
+    border-radius:12px;
+  }
+
+  .edit-modal h2{
+    font-size:22px;
+    text-align:center;
+  }
+
+  .form-group label{
+    font-size:14px;
+  }
+
+  .form-group input{
+    font-size:14px;
+    padding:10px;
+  }
+
+  .modal-buttons{
+    flex-direction:column;
+  }
+
+  .cancel-btn,
+  .save-btn{
+    width:100%;
+  }
+
+}
+
+/* ==========================
+   Chat Message Responsive
+========================== */
+
+/* Laptop */
+@media (max-width:992px){
+
+  .ai-message,
+  .user-message{
+    max-width:85%;
+  }
+
+}
+
+/* Tablet */
+@media (max-width:768px){
+
+  .chat-body{
+    padding:20px;
+    gap:18px;
+  }
+
+  .ai-message,
+  .user-message{
+    max-width:90%;
+    padding:14px 18px;
+  }
+
+  .message-text{
+    font-size:15px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:480px){
+
+  .chat-body{
+    padding:15px;
+    gap:15px;
+  }
+
+  .ai-message,
+  .user-message{
+    max-width:100%;
+    padding:12px 15px;
+    border-radius:12px;
+  }
+
+  .message-text{
+    font-size:14px;
+    line-height:1.6;
+  }
+
+  .message-text h1{
+    font-size:24px;
+  }
+
+  .message-text h2{
+    font-size:20px;
+  }
+
+  .message-text h3{
+    font-size:18px;
+  }
+
+  .message-text pre{
+    font-size:13px;
+  }
+
+  .message-text code{
+    font-size:13px;
+  }
+
+}
+
+/* ==========================
+   Chat Input Responsive
+========================== */
+
+/* Laptop */
+@media (max-width:992px){
+
+  .chat-input{
+    padding:18px;
+  }
+
+  .chat-input input{
+    font-size:15px;
+  }
+
+}
+
+/* Tablet */
+@media (max-width:768px){
+
+  .chat-input{
+    padding:16px;
+    gap:10px;
+  }
+
+  .chat-input input{
+    padding:14px 16px;
+    font-size:15px;
+  }
+
+  .chat-input button{
+    padding:14px 22px;
+    font-size:15px;
+  }
+
+}
+
+/* Mobile */
+@media (max-width:480px){
+
+  .chat-input{
+    padding:12px;
+    gap:10px;
+  }
+
+  .chat-input input{
+    padding:12px 14px;
+    font-size:14px;
+  }
+
+  .chat-input button{
+    width:46px;
+    height:46px;
+  }
+
+  .chat-input button svg{
+    font-size:20px;
+  }
+
 }
