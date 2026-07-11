@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { FaHome, FaBook, FaRobot, FaUser } from "react-icons/fa";
 import { useState } from "react";
-import { FiSearch } from "react-icons/fi";
+import { FiMenu } from "react-icons/fi";
 
 function Sidebar() {
 
